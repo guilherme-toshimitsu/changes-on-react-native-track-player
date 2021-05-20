@@ -253,12 +253,10 @@ public abstract class ExoPlayback<T extends Player> implements EventListener, Me
             // Track changed because it ended
             // We'll use its duration instead of the last known position
             if (reason == Player.DISCONTINUITY_REASON_PERIOD_TRANSITION && lastKnownWindow != C.INDEX_UNSET) {
+                pause();
                 if (lastKnownWindow >= player.getCurrentTimeline().getWindowCount()) return;
                 long duration = player.getCurrentTimeline().getWindow(lastKnownWindow, new Window()).getDurationMs();
                 if(duration != C.TIME_UNSET) lastKnownPosition = duration;
-                if (player.getPlayWhenReady()) {
-                    pause();
-                }
             }
 
             manager.onTrackUpdate(previous, lastKnownPosition, next);
