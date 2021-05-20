@@ -237,6 +237,11 @@ public abstract class ExoPlayback<T extends Player> implements EventListener, Me
         if((reason == Player.TIMELINE_CHANGE_REASON_PREPARED || reason == Player.TIMELINE_CHANGE_REASON_DYNAMIC) && !timeline.isEmpty()) {
             onPositionDiscontinuity(Player.DISCONTINUITY_REASON_INTERNAL);
         }
+
+        //Check auto time line pause on tracks
+        if(reason == Player.DISCONTINUITY_REASON_AUTO_TRANSITION && !timeline.isEmpty()) {
+            player.setPlayWhenReady(false);
+        }
     }
 
     @Override
