@@ -239,7 +239,7 @@ public abstract class ExoPlayback<T extends Player> implements EventListener, Me
         }
 
         //Check auto time line pause on tracks
-        if(reason == Player.DISCONTINUITY_REASON_AUTO_TRANSITION && !timeline.isEmpty()) {
+        if(reason == Player.MEDIA_ITEM_TRANSITION_REASON_AUTO && !timeline.isEmpty()) {
             player.setPlayWhenReady(false);
         }
     }
